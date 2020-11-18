@@ -22,6 +22,6 @@ var canCompleteCircuit = function (gas, cost) {
           start = i + 1
       }
   }
-  // 当gas的sum大于等于cost的sum时  一定有解
+  // 当gas的sum大于等于cost的sum时  一定有jie
   return start;
 };
