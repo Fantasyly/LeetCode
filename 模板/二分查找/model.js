@@ -31,7 +31,7 @@ const binarySearch1 = (nums, target) => {
     right = nums.length - 1;
 
   while (left < right) {
-    let mid = Math.floor(left + (right - left) / 2);
+    let mid = left + Math.floor((right - left) / 2);
     if (nums[mid] < target) {
       // 当前值严格小于target, 下一轮搜索区间为[mid + 1, right]
       left = mid + 1;
@@ -49,8 +49,8 @@ const binarySearch2 = (nums, target) => {
     right = nums.length - 1;
   while (left < right) {
     // 或者
-    //let mid = Math.ceil(left + (right - left) / 2);
-    let mid = Math.floor(left + (right - left + 1) / 2);
+    //let mid = left + Math.ceil((right - left) / 2);
+    let mid = left + Math.floor((right - left + 1) / 2);
     if (nums[mid] > target) {
       right = mid - 1;
     } else {
