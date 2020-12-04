@@ -4,6 +4,22 @@
  */
 var findMin = function (nums) {
   /**
+   * 用这种思路可以把153和154两道题结合到一块去记
+   *
+   * 因为nums中有重复值,
+   * 考查区间最右端的值,即nums[right]
+   * 那么在nums中,在转折点左侧必定都是大于等于nums[right]的,
+   * 在转折点右侧必定都是小于等于nums[right]的
+   * 那么就可以找到转折点,也即最小值
+   *
+   * 当nums[mid] > nums[right]时,
+   *  最小值肯定在右边 因此 left= mid + 1
+   * 当 nums[mid] < nums[right]时,
+   *  最小值可能是nums[mid],也可能是更左边的值,因此right=mid
+   *  当nums[mid] === nums[right]时,
+   *   right--
+   */
+  /**
    * 时间复杂度：平均时间复杂度为 O(logn)，
    * 其中 n 是数组 nums 的长度。
    * 如果数组是随机生成的，那么数组中包含相同元素的概率很低，
