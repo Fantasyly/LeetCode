@@ -37,3 +37,20 @@ var buildTree = function (preorder, inorder) {
   root.right = buildTree(preorder.slice(index + 1), inorder.slice(index + 1));
   return root;
 };
+
+// 写法2  用preorder.shift() 代替 preorder[0]
+var buildTree = function (preorder, inorder) {
+  //实际上inorder 和 postorder一定是同时为空的，因此你无论判断哪个都行
+  if (preorder.length === 0) return null;
+
+  // 创建当前节点
+  const root = new TreeNode(preorder.shift());
+
+  // 获取根节点在中序数组中的位置  同时index也就是左子树的大小
+  // 比如找到inde为4 ,那么0 1 2 3位置上均为左子树, 左子树的大小即为4
+  const index = inorder.indexOf(root.val);
+
+  root.left = buildTree(preorder.slice(0, index), inorder.slice(0, index));
+  root.right = buildTree(preorder.slice(index), inorder.slice(index + 1));
+  return root;
+};
