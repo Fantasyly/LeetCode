@@ -12,7 +12,7 @@
 var constructMaximumBinaryTree = function (nums) {
   /**
    * 这道题就是模板题
-   *  直接递归即可
+   * 直接递归即可
    * 套路和之前根据前序中序构建二叉树的题目一样
    * 
    * 时间复杂度: O(n2), 递归n次, 每次都要寻找最大值, 寻找的复杂度为O(logn), 因此一次递归的复杂度是O(nlogn)
