@@ -51,7 +51,7 @@ var countNodes = function (root) {
   let low = 2 ** h,
     high = 2 ** (h + 1) - 1;
   //   let low = 1 << h,
-  // high = 1 << (h + 1 - 1);
+  // high = 1 << (h + 1 ) - 1;
   while (low < high) {
     let mid = (low + high + 1) >>> 1;
 
