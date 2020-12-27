@@ -15,7 +15,8 @@ var minWindow = function (s, t) {
     tFreq[t[i].charCodeAt()]++;
   }
 
-  let left = (right = 0),
+  let left = 0,
+    right = 0,
     minLen = Infinity,
     distance = 0,
     begin = 0;
