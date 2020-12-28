@@ -6,55 +6,38 @@
     <title>Document</title>
   </head>
   <body>
-    <!-- 该html文件用来调试js代码 -->
     <script type="text/javascript">
-      function TreeNode(val, left, right) {
-        this.val = val === undefined ? 0 : val;
-        this.left = left === undefined ? null : left;
-        this.right = right === undefined ? null : right;
+      function entry2Output(obj) {
+        if (Object.prototype.toString.call(obj) !== "[object Object]") {
+          return obj;
+        }
+
+        let ans = {};
+
+        const getUnFlat = (ans, key, value) => {
+          let keyArray = key.split(".");
+          if (keyArray.length === 1 && keyArray[0] !== "") {
+            ans[key] = value;
+          } else {
+            let k = keyArray[0];
+            if (!ans[k]) ans[k] = {};
+            getUnFlat(ans[k], key.slice(2), value);
+          }
+          return ans;
+        };
+        for (let key in obj) {
+          getUnFlat(ans, key, obj[key]);
+        }
+
+        return ans;
       }
 
-      /**
-       * @param {TreeNode} root
-       * @return {number}
-       */
-      var widthOfBinaryTree = function (root) {
-        if (!root) return 0;
-
-        const queue = [[root, 1]];
-        let res = 0,
-          curLevel = 0,
-          level = 0,
-          left = 1;
-        while (queue.length) {
-          let len = queue.length;
-          while (len) {
-            const [node, pos] = queue.shift();
-            node.left && queue.push([node.left, 2 * pos]);
-            node.right && queue.push([node.right, 2 * pos + 1]);
-
-            if (curLevel !== level) {
-              curLevel = level;
-              left = pos;
-            }
-            res = Math.max(res, pos - left + 1);
-            len--;
-          }
-          level++;
-        }
-        return res;
-      };
-
-      let root = new TreeNode(1);
-      root.left = new TreeNode(1);
-      root.left.left = new TreeNode(1);
-      root.left.left.left = new TreeNode(1);
-
-      root.right = new TreeNode(1);
-      root.right.right = new TreeNode(1);
-      root.right.right.right = new TreeNode(1);
-
-      widthOfBinaryTree(root);
+      let res = entry2Output({
+        "a.b.c.dd": "valiue",
+        "a.d.xx": "val",
+        "a.e": "v",
+      });
+      console.log(res);
     </script>
   </body>
 </html>
