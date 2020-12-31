@@ -30,7 +30,7 @@ var detectCycle = function (head) {
   let slow = head,
     fast = head;
 
-  while (slow && fast) {
+  while (fast) {
     slow = slow.next;
     if (fast.next) {
       fast = fast.next.next;
