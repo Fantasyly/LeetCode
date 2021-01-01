@@ -29,3 +29,26 @@ var rightSideView = function (root) {
   }
   return res;
 };
+
+/**
+ * DFS实现
+ * 题解看官方题解的视频或者下面的评论第一条
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var rightSideView = function (root) {
+  if (!root) return [];
+  const res = [];
+
+  const dfs = (root, depth) => {
+    if (!root) return;
+
+    if (depth === res.length) {
+      res.push(root.val);
+    }
+    dfs(root.right, depth + 1);
+    dfs(root.left, depth + 1);
+  };
+  dfs(root, 0);
+  return res;
+};
