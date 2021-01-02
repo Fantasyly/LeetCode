@@ -31,13 +31,13 @@ var islandPerimeter = function (grid) {
     return dfs(grid, x - 1, y) + dfs(grid, x + 1, y) + dfs(grid, x, y + 1) + dfs(grid, x, y - 1);
   };
 
-  for (let i = 0; i < grid.length; i++){
-      for (let j = 0; j < grid[0].length; j++){
-          if (grid[i][j] === 1) {
-              // 因为题目说的只有一个岛屿 因此直接返回即可
-              return dfs(grid, i, j);
-          }
+  for (let i = 0; i < grid.length; i++) {
+    for (let j = 0; j < grid[0].length; j++) {
+      if (grid[i][j] === 1) {
+        // 因为题目说的只有一个岛屿 因此直接返回即可
+        return dfs(grid, i, j);
       }
+    }
   }
 };
 
