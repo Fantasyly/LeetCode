@@ -17,10 +17,6 @@ var maxAreaOfIsland = function (grid) {
     }
 
     grid[x][y] = 2;
-    count++;
-    if (count > maxCount) {
-      maxCount = count;
-    }
 
     return (
       1 + dfs(grid, x - 1, y) + dfs(grid, x + 1, y) + dfs(grid, x, y - 1) + dfs(grid, x, y + 1)
