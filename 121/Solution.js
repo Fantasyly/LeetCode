@@ -27,3 +27,23 @@ var maxProfit = function (prices) {
   });
   return maxProfit;
 };
+
+/**
+ * 以下是简化代码
+ */
+/**
+ * @param {number[]} prices
+ * @return {number}
+ */
+var maxProfit = function (prices) {
+  if (!prices) return 0;
+
+  let ans = 0,
+    buy = prices[0];
+
+  for (let i = 1; i < prices.length; i++) {
+    ans = Math.max(ans, prices[i] - buy);
+    buy = Math.min(buy, prices[i]);
+  }
+  return ans;
+};
