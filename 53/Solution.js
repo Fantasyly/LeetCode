@@ -1,43 +1,33 @@
 /**
- * 这一个是官方题解的思路
- * 看了题解才知道原来是动态规划的思想
- *
- * sum: 前一段的和
- * maxSum: 最大和
- *
- * 如果sum+value > sum, sum = sum + value那么当前值就相当于加入前一段
- * 否则  sum自立门户, sum = value;
- * 然后取maxSum和sum的最大值
- *
- *
- * 尽管和我下面的思路略有不同  但是代码写出来是一模一样的
- * @param {number[]} nums
- * @return {number}
+ * 思路可以看官方题解
+ * dp解法:
+ * 题目要求输出数组中某个区间内数字之和最大的那个值。
+ * dp[i] 表示 [0,i] 区间内各个子区间和的最大值，
+ * 状态转移方程是 dp[i] = nums[i] + dp[i-1] (dp[i-1] > 0)，
+ *             dp[i] = nums[i] (dp[i-1] ≤ 0)。
  */
 var maxSubArray = function (nums) {
   if (!nums.length) return -Infinity;
+  let dp = new Array(nums.length);
+  dp[0] = nums[0];
+  let ans = nums[0];
 
-  let sum = 0,
-    maxSum = 0;
-  nums.forEach(value => {
-    // if (sum + value > sum) {
-    //     sum += value
-    // } else {
-    //     sum = value;
-    // }
-    // 上面的代码就等价于
-    sum = Math.max(sum + value, value);
-
-    maxSum = Math.max(sum, maxSum);
-  });
-  return maxSum;
+  for (let i = 1; i < nums.length; i++) {
+    if (dp[i - 1] > 0) {
+      dp[i] = dp[i - 1] + nums[i];
+    } else {
+      dp[i] = nums[i];
+    }
+    ans = Math.max(ans, dp[i]);
+  }
+  return ans;
 };
 
 /**
  * @param {number[]} nums
  * @return {number}
  */
-var maxSubArray = function (nums) {
+var maxSubArray2 = function (nums) {
   /**
    * 首先说一下我的思路,
    * 对于当前位置来说, 都要考虑一个问题
