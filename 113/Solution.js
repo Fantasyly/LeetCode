@@ -49,3 +49,36 @@ var pathSum = function (root, sum) {
   dfs(root, []);
   return result;
 };
+
+// 复习时写的代码 我觉得更好
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {number} sum
+ * @return {number[][]}
+ */
+var pathSum = function (root, sum) {
+  if (!root) return [];
+  const res = [];
+
+  const dfs = (root, path, curSum) => {
+    if (!root) return 0;
+    path.push(root.val);
+    curSum += root.val;
+    if (!root.left && !root.right && curSum === sum) {
+      res.push([...path]);
+    }
+
+    dfs(root.left, path, curSum);
+    dfs(root.right, path, curSum);
+    path.pop();
+  };
+  dfs(root, [], 0);
+  return res;
+};
