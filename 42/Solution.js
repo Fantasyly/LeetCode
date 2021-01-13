@@ -112,7 +112,43 @@ var trap = function (height) {
 };
 
 /**
- * !最终解法
+ * !最终解法 我的代码
+ * 和下面的题解代码略有不同
+ * 但是我觉得我的代码更好懂
+ * @param {number[]} height
+ * @return {number}
+ */
+var trap = function (height) {
+  if (!height.length) return 0;
+
+  let res = 0;
+  // 左边墙的高度初始值为第一个元素 右边墙的高度初始值是最后一个元素
+  let leftWall = height[0],
+    rightWall = height[height.length - 1];
+
+  // 定义双指针
+  let left = 1,
+    right = height.length - 2;
+
+  // 注意这里必须是小于等于  如果是严格小于 那么left==right的那个元素不会被计算
+  while (left <= right) {
+    let value = 0;
+    // 如果左边的墙小于右边的墙，那么去算左边的  因为右边的墙只会更高
+    if (leftWall < rightWall) {
+      value = leftWall - height[left];
+      leftWall = Math.max(leftWall, height[left]);
+      left++;
+    } else {
+      value = rightWall - height[right];
+      rightWall = Math.max(rightWall, height[right]);
+      right--;
+    }
+    value > 0 && (res += value);
+  }
+  return res;
+};
+/**
+ * !最终解法 题解中的代码
  * 动态规划的改进 双指针法
  * 动态规划中，我们常常可以对空间复杂度进行进一步的优化。
  * 具体细节见题解
