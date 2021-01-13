@@ -48,15 +48,8 @@ var reverseBetween = function (head, m, n) {
     p = q;
     q && (q = q.next);
   }
-
-  // 如果m为1 那么要修改head节点 新的头节点为pre节点
-  if (m === 1) {
-    hair.next = pre;
-    tail.next = p;
-  } else {
-    preStr.next = pre;
-    tail.next = p;
-  }
+  preStr.next = pre;
+  tail.next = p;
   return hair.next;
 };
 /**
