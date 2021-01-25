@@ -1,7 +1,7 @@
 /**
  * 回溯解决
- * 时间复杂度： O()
- * 空间复杂度
+ * 时间复杂度： O(n*n!)
+ * 空间复杂度: O(n*n!)
  * @param {number[]} nums
  * @return {number[][]}
  */
